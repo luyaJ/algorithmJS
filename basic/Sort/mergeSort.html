@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>归并排序</title>
+</head>
+<body>
+  <!-- 归并排序：需要额外给他一个空间 -->
+  <script>
+    function merge(left, right) {
+      var result = [];
+      while(left.length > 0 && right.length > 0) {
+        // left[i] 和 right[j] 进行比较
+        if(left[0] < right[0]) {
+          result.push(left.shift());
+        } else {
+          result.push(right.shift());
+        }
+      }
+      // 当左右数组长度不等，将比较完成后剩下的数组连接起来
+      return result.concat(left).concat(right);
+    }
+
+    function mergeSort(arr) {
+      if(arr.length == 1) {
+        return arr;
+      }
+      // 归并排序将数组分为左右两部分，left[i]和right[j]进行比较
+      var middle = Math.floor(arr.length / 2);
+      var left = arr.slice(0, middle);
+      var right = arr.slice(middle);
+      return merge(mergeSort(left), mergeSort(right));     
+    }
+
+    var arr = [1, 4, 2, 7, 12, 56, 15, 9];
+    console.log(mergeSort(arr));
+  </script>
+</body>
+</html>

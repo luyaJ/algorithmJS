@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>希尔排序</title>
+</head>
+<body>
+  <!-- 是插入排序的一种更高效的改进版，他是初期选用大跨步间隔作比较，然后增量慢慢减少为1 -->
+  
+  <script>
+    function shellSort(arr) {
+
+      function swap(arr, i, k) {
+        var temp = arr[i];
+        arr[i] = arr[k];
+        arr[k] = temp;
+      }
+
+      var gap = Math.floor(arr.length / 2);
+
+      while(gap > 0) {
+        for(var i = gap; i < arr.length; i++) {
+          for(var j = i; j > 0; j-= gap) {
+            if(arr[j-gap] > arr[j]) {
+              swap(arr, j, j-gap);
+            } else {
+              break;
+            }
+          }
+        }
+        gap = Math.floor(gap / 2);
+      }
+
+      return arr;
+    }
+
+    var arr = [5, 1, 4, 9, 3, 8, 0, 2, 7, 6];
+    console.log(shellSort(arr));
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>二分查找_递归</title>
+</head>
+<body>
+  <script>
+    function binarySearch2(arr, low, high, key) {
+      if(low > high) {
+        return -1;
+      }
+
+      var mid = parseInt((low + high) / 2);
+      if(arr[mid] == key) {
+        return mid;
+      } else if(arr[mid] > key) {
+        high = mid - 1;
+        return binarySearch2(arr, low, high, key);
+      } else if(arr[mid] < key) {
+        low = mid + 1;
+        return binarySearch2(arr, low, high, key);        
+      }
+    }  
+
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    alert(binarySearch2(arr, 0, 10, 4));
+  </script>
+</body>
+</html>
